@@ -12,98 +12,16 @@ import {
   FlatList,
 } from "react-native";
 import { BlurView } from "expo-blur";
+import { useDispatch, useSelector } from "react-redux";
+import { Menu } from "react-native-feather";
+import MobileOptionsModal from "../resources/components/MobileOptionsModal";
+import NavButtonBlock from "../resources/components/NavButtonBlock";
 import { Colors, Environment, GlobalStyles } from "../resources/project";
-
-interface BackgroundContentObject {
-  title: string;
-  address: string;
-}
-
-const backgroundContent: BackgroundContentObject[] = [
-  {
-    title: "Valheim",
-    address:
-      "https://mobile965f75596afb4ca68a1e637998665f92161112-production.s3.amazonaws.com/public/CompanyStock/LandingPage/LP-Valheim.jpg",
-  },
-  {
-    title: "Minecraft Sand",
-    address:
-      "https://mobile965f75596afb4ca68a1e637998665f92161112-production.s3.amazonaws.com/public/CompanyStock/LandingPage/LP-MC2.jpeg",
-  },
-  {
-    title: "Forza",
-    address:
-      "https://mobile965f75596afb4ca68a1e637998665f92161112-production.s3.amazonaws.com/public/CompanyStock/LandingPage/LP-Forza.jpeg",
-  },
-  {
-    title: "Animal Crossing: New Horizons",
-    address:
-      "https://mobile965f75596afb4ca68a1e637998665f92161112-production.s3.amazonaws.com/public/CompanyStock/LandingPage/LP-ACNH.JPG",
-  },
-  {
-    title: "NaN",
-    address:
-      "https://mobile965f75596afb4ca68a1e637998665f92161112-production.s3.amazonaws.com/public/CompanyStock/LandingPage/LP-NaN.PNG",
-  },
-  {
-    title: "Breath of the Wild",
-    address:
-      "https://mobile965f75596afb4ca68a1e637998665f92161112-production.s3.amazonaws.com/public/CompanyStock/LandingPage/LP-BOTW2.JPG",
-  },
-  {
-    title: "Red Dead Redemption 2",
-    address:
-      "https://mobile965f75596afb4ca68a1e637998665f92161112-production.s3.amazonaws.com/public/CompanyStock/LandingPage/LP-RDR2.PNG",
-  },
-  {
-    title: "Skyrim",
-    address:
-      "https://mobile965f75596afb4ca68a1e637998665f92161112-production.s3.amazonaws.com/public/CompanyStock/LandingPage/LP-Skyrim.JPG",
-  },
-  {
-    title: "Minecraft Nether",
-    address:
-      "https://mobile965f75596afb4ca68a1e637998665f92161112-production.s3.amazonaws.com/public/CompanyStock/LandingPage/LP-MC.jpeg",
-  },
-];
-
-const backgroundImages: string[] = [
-  "https://mobile965f75596afb4ca68a1e637998665f92161112-production.s3.amazonaws.com/public/CompanyStock/LandingPage/LP-Valheim.jpg",
-  "https://mobile965f75596afb4ca68a1e637998665f92161112-production.s3.amazonaws.com/public/CompanyStock/LandingPage/LP-MC2.jpeg",
-  "https://mobile965f75596afb4ca68a1e637998665f92161112-production.s3.amazonaws.com/public/CompanyStock/LandingPage/LP-BOTW.jpeg",
-  "https://mobile965f75596afb4ca68a1e637998665f92161112-production.s3.amazonaws.com/public/CompanyStock/LandingPage/LP-MC.jpeg",
-];
-
-const NavButtonBlock = ({
-  title,
-  active,
-  Action,
-}: {
-  title: string;
-  active: boolean;
-  Action: Function;
-}) => {
-  return (
-    <TouchableOpacity onPress={() => Action()}>
-      <View style={{ marginHorizontal: Environment.standardPadding }}>
-        <Text
-          style={[
-            GlobalStyles.textShadow,
-            {
-              color: Colors.Primary,
-              fontSize: 32,
-              textDecorationLine: active ? "underline" : "none",
-            },
-          ]}
-          numberOfLines={1}
-          adjustsFontSizeToFit
-        >
-          {title}
-        </Text>
-      </View>
-    </TouchableOpacity>
-  );
-};
+import { DispatchType, RootStateType } from "../redux/store";
+import NavBar from "../resources/components/NavBar";
+import backgroundContent from "../resources/backgroundContent";
+import { BackgroundContentObject } from "../resources/backgroundContent";
+import { setNavOptionsActive } from "../redux/general";
 
 export interface WindowDimensionsType {
   height: number;
@@ -112,66 +30,21 @@ export interface WindowDimensionsType {
   fontScale: number;
 }
 
-const NavButtonHolder = ({
-  windowDimensions,
-}: {
-  windowDimensions: WindowDimensionsType;
-}) => {
-  if (windowDimensions.height / windowDimensions.width < 1) {
-    // Landscape
-    return (
-      <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
-        <NavButtonBlock
-          title={"Home"}
-          active={true}
-          Action={() => console.log("Home")}
-        />
-        <NavButtonBlock
-          title={"Contact"}
-          active={false}
-          Action={() => console.log("Contact")}
-        />
-        <NavButtonBlock
-          title={"Log in"}
-          active={false}
-          Action={() => console.log("Contact")}
-        />
-      </View>
-    );
-  } else {
-    // Portrait
-    return null;
-  }
-};
-
-const NavLogo = ({
-  windowDimensions,
-}: {
-  windowDimensions: WindowDimensionsType;
-}) => {
-  if (windowDimensions.height / windowDimensions.width < 1) {
-    return (
-      <Image
-        source={{
-          uri: "https://mobile965f75596afb4ca68a1e637998665f92161112-production.s3.amazonaws.com/public/CompanyStock/LandingPage/LP-LongLogoDark.png",
-        }}
-        style={{ height: "100%", width: "20%" }}
-        resizeMode="contain"
-      />
-    );
-  } else {
-    return null;
-  }
-};
-
 interface UpdateIndexProps {
   contentIndex: number;
   setContentIndex: Function;
   backgroundContent: BackgroundContentObject[];
 }
 
-const LandingMain = ({ navigation }: any) => {
+interface LandingMainProps {
+  navigation: any;
+  route: any;
+}
+
+const LandingMain = ({ navigation, route }: LandingMainProps) => {
   const [index, setIndex] = useState(0);
+
+  const dispatch = useDispatch();
 
   const flatListRef = useRef<FlatList<any>>(null);
 
@@ -182,8 +55,6 @@ const LandingMain = ({ navigation }: any) => {
       return previousIndex + 1;
     }
   };
-
-  console.log("Loop");
 
   flatListRef.current?.scrollToIndex({ animated: true, index });
 
@@ -240,26 +111,12 @@ const LandingMain = ({ navigation }: any) => {
         getItemLayout={GetItemLayout}
       />
       <View style={{ height: "100%", padding: "2%" }}>
-        <BlurView
-          intensity={80}
-          style={[
-            GlobalStyles.shadow,
-            {
-              height: "10%",
-              width: "100%",
-              backgroundColor: "#35fac5",
-              borderRadius: Environment.standardRadius,
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-              padding: "0.75%",
-              marginBottom: "2%",
-            },
-          ]}
-        >
-          <NavLogo windowDimensions={windowDimensions} />
-          <NavButtonHolder windowDimensions={windowDimensions} />
-        </BlurView>
+        <NavBar
+          windowDimensions={windowDimensions}
+          dispatch={dispatch}
+          origin={"Home"}
+        />
+
         <View
           style={{
             flex: 1,
@@ -279,7 +136,7 @@ const LandingMain = ({ navigation }: any) => {
           >
             Save forever, share anywhere.
           </Text>
-          <View></View>
+          <View />
           <View>
             <Text
               style={[
@@ -289,7 +146,9 @@ const LandingMain = ({ navigation }: any) => {
             >
               Now in Beta
             </Text>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => window.open("https://discord.gg/jkRsESdga4")}
+            >
               <BlurView
                 intensity={80}
                 tint="light"
@@ -321,6 +180,7 @@ const LandingMain = ({ navigation }: any) => {
           </View>
         </View>
       </View>
+      <MobileOptionsModal origin={"Home"} />
     </View>
   );
 };

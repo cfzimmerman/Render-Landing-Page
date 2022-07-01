@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LandingMain from "./pages/LandingMain";
 import Dump from "./pages/Dump";

@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import PageStack from "./src/PageStack";
 import AppLoading from "expo-app-loading";
+import store from "./src/redux/store";
+import { Provider } from "react-redux";
 import {
   useFonts,
   Inter_400Regular,
@@ -21,9 +23,11 @@ const App = () => {
     return <AppLoading />;
   } else {
     return (
-      <NavigationContainer>
-        <PageStack />
-      </NavigationContainer>
+      <Provider store={store}>
+        <NavigationContainer>
+          <PageStack />
+        </NavigationContainer>
+      </Provider>
     );
   }
 };
