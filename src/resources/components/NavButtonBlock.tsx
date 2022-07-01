@@ -18,13 +18,12 @@ const NavButtonBlock = ({ title, active, Action }: NavButtonBlockPropTypes) => {
         right: Environment.standardPadding,
       }}
     >
-      <View style={{ marginHorizontal: Environment.standardPadding }}>
+      <View style={styles.navbuttonwrapper}>
         <Text
           style={[
             GlobalStyles.textShadow,
+            styles.buttonlabel,
             {
-              color: Colors.Primary,
-              fontSize: 32,
               textDecorationLine: active ? "underline" : "none",
             },
           ]}
@@ -37,5 +36,15 @@ const NavButtonBlock = ({ title, active, Action }: NavButtonBlockPropTypes) => {
     </TouchableOpacity>
   );
 };
+
+const styles = StyleSheet.create({
+  navbuttonwrapper: {
+    marginHorizontal: Environment.standardPadding,
+  },
+  buttonlabel: {
+    color: Colors.Primary,
+    fontSize: 32,
+  },
+});
 
 export default NavButtonBlock;

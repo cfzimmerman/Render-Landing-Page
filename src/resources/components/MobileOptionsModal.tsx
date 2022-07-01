@@ -7,6 +7,7 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { X } from "react-native-feather";
+import * as Linking from "expo-linking";
 import NavButtonBlock from "./NavButtonBlock";
 import { BlurView } from "expo-blur";
 import IsActive from "../utils/IsActive";
@@ -22,7 +23,13 @@ export interface MobileOptionsModalPropTypes {
 
 // NEXT: Turn buttons into an exported component. Import for use here.
 
-const MobileOptionsModal = ({ origin }: { origin: OriginTypes }) => {
+const MobileOptionsModal = ({
+  origin,
+  navigation,
+}: {
+  origin: OriginTypes;
+  navigation: any;
+}) => {
   const dispatch = useDispatch();
   const navOptionsActive = useSelector(
     (state: RootStateType) => state.general.navOptionsActive
@@ -35,35 +42,32 @@ const MobileOptionsModal = ({ origin }: { origin: OriginTypes }) => {
       visible={navOptionsActive}
       onRequestClose={() => dispatch(setNavOptionsActive(false))}
     >
-      <BlurView tint={"light"} style={{ flex: 1 }}>
+      <BlurView tint={"light"} style={styles.blurviewwrapper}>
         <TouchableWithoutFeedback
           onPress={() => dispatch(setNavOptionsActive(false))}
         >
-          <View
-            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-          >
-            <View
-              style={{
-                height: "40%",
-                width: "100%",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
+          <View style={styles.container}>
+            <View style={styles.navbuttonwrapper}>
               <NavButtonBlock
                 title={"Home"}
                 active={IsActive({ buttonLabel: "Home", origin })}
-                Action={() => console.log("Home")}
+                Action={() => {
+                  navigation.navigate("LandingMain");
+                  dispatch(setNavOptionsActive(false));
+                }}
               />
               <NavButtonBlock
                 title={"Contact"}
                 active={IsActive({ buttonLabel: "Contact", origin })}
-                Action={() => console.log("Contact")}
+                Action={() => {
+                  navigation.navigate("Contact");
+                  dispatch(setNavOptionsActive(false));
+                }}
               />
               <NavButtonBlock
                 title={"Log in"}
                 active={false}
-                Action={() => console.log("Log in")}
+                Action={() => Linking.openURL("https://youtu.be/dQw4w9WgXcQ")}
               />
               <TouchableOpacity
                 onPress={() => dispatch(setNavOptionsActive(false))}
@@ -81,5 +85,22 @@ const MobileOptionsModal = ({ origin }: { origin: OriginTypes }) => {
     </Modal>
   );
 };
+
+const styles = StyleSheet.create({
+  blurviewwrapper: {
+    flex: 1,
+  },
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  navbuttonwrapper: {
+    height: "40%",
+    width: "100%",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+});
 
 export default MobileOptionsModal;

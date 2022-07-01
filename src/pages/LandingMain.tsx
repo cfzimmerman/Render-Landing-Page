@@ -22,6 +22,7 @@ import NavBar from "../resources/components/NavBar";
 import backgroundContent from "../resources/backgroundContent";
 import { BackgroundContentObject } from "../resources/backgroundContent";
 import { setNavOptionsActive } from "../redux/general";
+import BlurViewButton from "../resources/components/BlurViewButton";
 
 export interface WindowDimensionsType {
   height: number;
@@ -93,7 +94,7 @@ const LandingMain = ({ navigation, route }: LandingMainProps) => {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: Colors.Primary }}>
+    <View style={styles.container}>
       <FlatList
         data={backgroundContent}
         renderItem={renderItem}
@@ -102,87 +103,71 @@ const LandingMain = ({ navigation, route }: LandingMainProps) => {
         scrollEnabled={true}
         keyExtractor={(item) => item.address}
         showsVerticalScrollIndicator={false}
-        style={{
-          flex: 1,
-          width: windowDimensions.width,
-          height: windowDimensions.height,
-          position: "absolute",
-        }}
+        style={[
+          styles.flatliststyle,
+          {
+            width: windowDimensions.width,
+            height: windowDimensions.height,
+          },
+        ]}
         getItemLayout={GetItemLayout}
       />
-      <View style={{ height: "100%", padding: "2%" }}>
+      <View style={styles.paddingwrapper}>
         <NavBar
           windowDimensions={windowDimensions}
           dispatch={dispatch}
           origin={"Home"}
+          navigation={navigation}
         />
 
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "space-evenly",
-            alignItems: "center",
-          }}
-        >
+        <View style={styles.headerwrapper}>
           <Text
-            style={[
-              GlobalStyles.h1,
-              GlobalStyles.textShadow,
-              {
-                textAlign: "center",
-                color: Colors.AccentOn,
-              },
-            ]}
+            style={[GlobalStyles.h1, GlobalStyles.textShadow, styles.header]}
           >
             Save forever, share anywhere.
           </Text>
           <View />
           <View>
-            <Text
-              style={[
-                GlobalStyles.h2,
-                { color: Colors.AccentOn, textAlign: "center" },
-              ]}
-            >
-              Now in Beta
-            </Text>
-            <TouchableOpacity
-              onPress={() => window.open("https://discord.gg/jkRsESdga4")}
-            >
-              <BlurView
-                intensity={80}
-                tint="light"
-                style={[
-                  GlobalStyles.shadow,
-                  {
-                    flex: 1,
-                    backgroundColor: "pink",
-                    margin: Environment.standardPadding,
-                    borderRadius: Environment.smallPadding,
-                  },
-                ]}
-              >
-                <Text
-                  style={[
-                    GlobalStyles.p1,
-                    GlobalStyles.textShadow,
-                    {
-                      textAlign: "center",
-                      color: Colors.Primary,
-                      margin: Environment.smallPadding,
-                    },
-                  ]}
-                >
-                  Join our Discord
-                </Text>
-              </BlurView>
-            </TouchableOpacity>
+            <Text style={[GlobalStyles.h2, styles.subheader]}>Now in Beta</Text>
+            <BlurViewButton
+              Action={() => window.open("https://discord.gg/jkRsESdga4")}
+              title={"Join our Discord"}
+              accessibilityLabel={"https://discord.gg/jkRsESdga4"}
+            />
           </View>
         </View>
       </View>
-      <MobileOptionsModal origin={"Home"} />
+      <MobileOptionsModal origin={"Home"} navigation={navigation} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: Colors.Primary,
+  },
+  flatliststyle: {
+    flex: 1,
+    position: "absolute",
+  },
+  paddingwrapper: {
+    height: "100%",
+    padding: "2%",
+  },
+  headerwrapper: {
+    flex: 1,
+    justifyContent: "space-evenly",
+    alignItems: "center",
+  },
+  header: {
+    textAlign: "center",
+    color: Colors.AccentOn,
+  },
+  subheader: {
+    color: Colors.AccentOn,
+    textAlign: "center",
+  },
+});
 
 export default LandingMain;
