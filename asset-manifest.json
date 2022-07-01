@@ -1,0 +1,31 @@
+{
+  "files": {
+    "app.js": "/LandingPage/static/js/app.16aae13a.chunk.js",
+    "app.js.map": "/LandingPage/static/js/app.16aae13a.chunk.js.map",
+    "runtime~app.js": "/LandingPage/static/js/runtime~app.e2f3f8eb.js",
+    "runtime~app.js.map": "/LandingPage/static/js/runtime~app.e2f3f8eb.js.map",
+    "static/js/2.2eb43017.chunk.js": "/LandingPage/static/js/2.2eb43017.chunk.js",
+    "static/js/2.2eb43017.chunk.js.map": "/LandingPage/static/js/2.2eb43017.chunk.js.map",
+    "fonts/Inter_100Thin.ttf": "/LandingPage/./fonts/Inter_100Thin.ttf",
+    "fonts/Inter_200ExtraLight.ttf": "/LandingPage/./fonts/Inter_200ExtraLight.ttf",
+    "fonts/Inter_300Light.ttf": "/LandingPage/./fonts/Inter_300Light.ttf",
+    "fonts/Inter_400Regular.ttf": "/LandingPage/./fonts/Inter_400Regular.ttf",
+    "fonts/Inter_500Medium.ttf": "/LandingPage/./fonts/Inter_500Medium.ttf",
+    "fonts/Inter_600SemiBold.ttf": "/LandingPage/./fonts/Inter_600SemiBold.ttf",
+    "fonts/Inter_700Bold.ttf": "/LandingPage/./fonts/Inter_700Bold.ttf",
+    "fonts/Inter_800ExtraBold.ttf": "/LandingPage/./fonts/Inter_800ExtraBold.ttf",
+    "fonts/Inter_900Black.ttf": "/LandingPage/./fonts/Inter_900Black.ttf",
+    "favicon-16.png": "/LandingPage/favicon-16.png",
+    "favicon-32.png": "/LandingPage/favicon-32.png",
+    "favicon.ico": "/LandingPage/favicon.ico",
+    "index.html": "/LandingPage/index.html",
+    "manifest.json": "/LandingPage/manifest.json",
+    "serve.json": "/LandingPage/serve.json",
+    "static/js/2.2eb43017.chunk.js.LICENSE.txt": "/LandingPage/static/js/2.2eb43017.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime~app.e2f3f8eb.js",
+    "static/js/2.2eb43017.chunk.js",
+    "static/js/app.16aae13a.chunk.js"
+  ]
+}
