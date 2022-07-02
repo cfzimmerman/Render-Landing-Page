@@ -7,16 +7,16 @@ frontend:
           - >
           if [ -f yarn.lock ]; then
           yarn
+          - nvm use 16
           elif [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; then
           npm ci
           else
           npm install
           fi
-          - nvm use 16
     build:
       commands:
-        - expo build:web
         - nvm use 16
+        - expo build:web
   artifacts:
     baseDirectory: web-build
     files:
