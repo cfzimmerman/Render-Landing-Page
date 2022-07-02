@@ -41,7 +41,9 @@ const NavButtonHolder = ({
         <NavButtonBlock
           title={"Log in"}
           active={false}
-          Action={() => Linking.openURL("https://youtu.be/dQw4w9WgXcQ")}
+          Action={() =>
+            Linking.openURL("https://production.d88kw0i3xs9f9.amplifyapp.com/")
+          }
         />
       </View>
     );

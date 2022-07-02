@@ -40,6 +40,11 @@ const backgroundContent: BackgroundContentObject[] = [
       "https://mobile965f75596afb4ca68a1e637998665f92161112-production.s3.amazonaws.com/public/CompanyStock/LandingPage/LP-RDR2.PNG",
   },
   {
+    title: "Hell Let Loose",
+    address:
+      "https://mobile965f75596afb4ca68a1e637998665f92161112-production.s3.amazonaws.com/public/CompanyStock/LandingPage/LP-HellLetLoose.jpeg",
+  },
+  {
     title: "Skyrim",
     address:
       "https://mobile965f75596afb4ca68a1e637998665f92161112-production.s3.amazonaws.com/public/CompanyStock/LandingPage/LP-Skyrim.JPG",
@@ -48,6 +53,11 @@ const backgroundContent: BackgroundContentObject[] = [
     title: "Minecraft Nether",
     address:
       "https://mobile965f75596afb4ca68a1e637998665f92161112-production.s3.amazonaws.com/public/CompanyStock/LandingPage/LP-MC.jpeg",
+  },
+  {
+    title: "F1 2022",
+    address:
+      "https://mobile965f75596afb4ca68a1e637998665f92161112-production.s3.amazonaws.com/public/CompanyStock/LandingPage/LP-F12022.png",
   },
 ];
 
