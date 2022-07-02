@@ -3,16 +3,9 @@ frontend:
   phases:
     preBuild:
       commands:
-          - npm install --quiet --global expo-cli
-          - >
-          if [ -f yarn.lock ]; then
-          yarn
-          - nvm use 16
-          elif [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; then
-          npm ci
-          else
-          npm install
-          fi
+        - yarn global add --silent expo-cli
+        - nvm use 16
+        - yarn
     build:
       commands:
         - nvm use 16
