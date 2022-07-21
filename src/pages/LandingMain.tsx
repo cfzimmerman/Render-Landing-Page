@@ -130,9 +130,15 @@ const LandingMain = ({ navigation, route }: LandingMainProps) => {
           <View>
             <Text style={[GlobalStyles.h2, styles.subheader]}>Now in Beta</Text>
             <BlurViewButton
-              Action={() => window.open("https://discord.gg/jkRsESdga4")}
-              title={"Join our Discord"}
-              accessibilityLabel={"https://discord.gg/jkRsESdga4"}
+              Action={() =>
+                window.open(
+                  "https://docs.google.com/forms/d/e/1FAIpQLSdeacr-mRudJqcRZC5Ofy5Eoe5VnYAG-HIKSSM5C0_L0valFQ/viewform?usp=sf_link"
+                )
+              }
+              title={"Apply for access"}
+              accessibilityLabel={
+                "https://docs.google.com/forms/d/e/1FAIpQLSdeacr-mRudJqcRZC5Ofy5Eoe5VnYAG-HIKSSM5C0_L0valFQ/viewform?usp=sf_link"
+              }
             />
           </View>
         </View>
