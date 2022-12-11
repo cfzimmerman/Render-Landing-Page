@@ -34,7 +34,8 @@ const BlurViewButton = ({
 const styles = StyleSheet.create({
   buttonwrapper: {
     backgroundColor: "pink",
-    margin: Environment.standardPadding,
+    marginTop: Environment.standardPadding,
+    marginHorizontal: Environment.standardPadding,
     borderRadius: Environment.smallPadding,
   },
   buttonlabel: {

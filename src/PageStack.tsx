@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LandingMain from "./pages/LandingMain";
-import Contact from "./pages/Contact";
+import About from "./pages/About";
 
 type RootStackParamList = {
   LandingMain: undefined;
   Dump: undefined;
-  Contact: undefined;
+  About: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -25,9 +25,9 @@ const PageStack = () => {
         options={{ animation: "fade", title: "Render" }}
       />
       <Stack.Screen
-        name="Contact"
-        component={Contact}
-        options={{ animation: "fade", title: "Render • Contact" }}
+        name="About"
+        component={About}
+        options={{ animation: "fade", title: "Render • About" }}
       />
     </Stack.Navigator>
   );
