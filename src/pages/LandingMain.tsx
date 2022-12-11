@@ -138,15 +138,9 @@ const LandingMain = ({ navigation, route }: LandingMainProps) => {
               }}
             >
               <BlurViewButton
-                Action={() =>
-                  window.open(
-                    "https://docs.google.com/forms/d/e/1FAIpQLSdeacr-mRudJqcRZC5Ofy5Eoe5VnYAG-HIKSSM5C0_L0valFQ/viewform?usp=pp_url&entry.1470519735=*WB"
-                  )
-                }
+                Action={() => window.open("https://discord.gg/jkRsESdga4")}
                 title={"Join our Discord"}
-                accessibilityLabel={
-                  "https://docs.google.com/forms/d/e/1FAIpQLSdeacr-mRudJqcRZC5Ofy5Eoe5VnYAG-HIKSSM5C0_L0valFQ/viewform?usp=pp_url&entry.1470519735=*WB"
-                }
+                accessibilityLabel={"https://discord.gg/jkRsESdga4"}
               />
               <BlurViewButton
                 Action={() =>
