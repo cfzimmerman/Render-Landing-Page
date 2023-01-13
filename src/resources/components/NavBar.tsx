@@ -9,7 +9,7 @@ import * as Linking from "expo-linking";
 import IsActive from "../utils/IsActive";
 import { DispatchType } from "../../redux/store";
 
-export type OriginTypes = "Home" | "Contact";
+export type OriginTypes = "Home" | "About";
 
 interface NavButtonHolderProps {
   windowDimensions: WindowDimensionsType;
@@ -34,9 +34,9 @@ const NavButtonHolder = ({
           Action={() => navigation.navigate("LandingMain")}
         />
         <NavButtonBlock
-          title={"Contact"}
-          active={IsActive({ origin, buttonLabel: "Contact" })}
-          Action={() => navigation.navigate("Contact")}
+          title={"About"}
+          active={IsActive({ origin, buttonLabel: "About" })}
+          Action={() => navigation.navigate("About")}
         />
         <NavButtonBlock
           title={"Log in"}
@@ -113,7 +113,14 @@ const NavBar = ({
   navigation,
 }: NavBarPropTypes) => {
   return (
-    <BlurView intensity={80} style={[GlobalStyles.shadow, styles.navbar]}>
+    <BlurView
+      intensity={80}
+      style={[
+        GlobalStyles.shadow,
+        styles.navbar,
+        { height: windowDimensions.height * 0.1 },
+      ]}
+    >
       <NavLogo windowDimensions={windowDimensions} navigation={navigation} />
       <NavButtonHolder
         windowDimensions={windowDimensions}
@@ -126,6 +133,16 @@ const NavBar = ({
 };
 
 const styles = StyleSheet.create({
+  navbar: {
+    width: "100%",
+    backgroundColor: "#35fac5",
+    borderRadius: Environment.standardRadius,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "0.75%",
+    marginBottom: "2%",
+  },
   navbuttonholder: {
     flexDirection: "row",
     justifyContent: "flex-end",
@@ -148,17 +165,6 @@ const styles = StyleSheet.create({
   },
   menuicon: {
     margin: Environment.standardPadding,
-  },
-  navbar: {
-    height: "10%",
-    width: "100%",
-    backgroundColor: "#35fac5",
-    borderRadius: Environment.standardRadius,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "0.75%",
-    marginBottom: "2%",
   },
 });
 

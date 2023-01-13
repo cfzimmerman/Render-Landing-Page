@@ -57,10 +57,10 @@ const MobileOptionsModal = ({
                 }}
               />
               <NavButtonBlock
-                title={"Contact"}
-                active={IsActive({ buttonLabel: "Contact", origin })}
+                title={"About"}
+                active={IsActive({ buttonLabel: "About", origin })}
                 Action={() => {
-                  navigation.navigate("Contact");
+                  navigation.navigate("About");
                   dispatch(setNavOptionsActive(false));
                 }}
               />
