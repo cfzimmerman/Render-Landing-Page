@@ -66,21 +66,12 @@ const About = ({ navigation }: AboutPropTypes) => {
           <Text
             style={[GlobalStyles.h1, GlobalStyles.textShadow, styles.header]}
           >
-            [ATTENTION GET]
+            Save today, re-live tomorrow
           </Text>
           <Text
-            style={[
-              GlobalStyles.textShadow,
-              GlobalStyles.p1,
-              {
-                color: Colors.AccentOn,
-                width: "80%",
-                textAlign: "justify",
-                marginBottom: Environment.largePadding,
-              },
-            ]}
+            style={[GlobalStyles.textShadow, GlobalStyles.p1, styles.textBlurb]}
           >
-            {`According to all known laws of aviation, there is no way a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don't care what humans think is impossible.\n\nYellow, black. Yellow, black. Yellow, black. Yellow, black. Ooh, black and yellow! Let's shake it up a little. Barry! Breakfast is ready! Coming! Hang on a second. Hello? Barry? Adam? Can you believe this is happening? I can't.`}
+            {`We're building Render for ordinary gamers. Those who love a good story, exploring a new world, or just chilling with friends. People who want to casually share that with the people they care about - show a pic at school, post a link in a Discord server, or toss it on the in-app feed. People who spend time in-game and don't want to lose those valuable experiences when the screen turns off.\n\nRender exists because the time people spend in game matters. We share memories with each other and bond over them, but there's nothing tangible about our in-game lives to hang on to as the years slip by. Render marks a fundamental change. It allows us to preserve, re-live, and bond over our virtual experiences for years to come. If this interests you, apply for our Beta at the link in the description so you can build the platform with us!`}
           </Text>
           <BlurViewButton
             Action={() => Linking.openURL("mailto:admin@render.game")}
@@ -115,6 +106,12 @@ const styles = StyleSheet.create({
   header: {
     textAlign: "center",
     color: Colors.AccentOn,
+    marginBottom: Environment.largePadding,
+  },
+  textBlurb: {
+    color: Colors.AccentOn,
+    width: "80%",
+    textAlign: "justify",
     marginBottom: Environment.largePadding,
   },
 });
